@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './header';
+import Header from './Header';
 import TicketList from './TicketList';
 
 function App() {
 	return (
-		<ReactFragment>
+		<React.Fragment>
 			<Header />
 			<TicketList />
-		</ReactFragment>
+		</React.Fragment>
 	);
 }
 

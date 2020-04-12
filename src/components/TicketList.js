@@ -22,6 +22,7 @@ const masterTicketList = [
 function TicketList() {
 	return (
 		<React.Fragment>
+			{/* Use Map to loop in JSX */}
 			<hr />
 			{masterTicketList.map((ticket, index) => (
 				<Ticket names={ticket.names} location={ticket.location} issue={ticket.issue} key={index} />

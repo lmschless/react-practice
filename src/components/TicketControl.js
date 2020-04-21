@@ -7,57 +7,39 @@ export default class TicketControl extends Component {
 		super(props);
 		this.state = {
 			formVisableOnPage: false,
-			clickCounter: 0
+			clickCounter: 0,
+			buttonText: 'Submit a Ticket',
+			currentlyVisibleState: <p>hi</p>
 		};
 	}
 
 	handleClick = () => {
-		this.setState((prevState) => ({
-			formVisibleOnPage: !prevState.formVisibleOnPage
-		}));
+		if (this.state.clickCounter === 0) {
+			this.setState({
+				currentlyVisibleState: (
+					<p>
+						Have you gone through all the steps on the Learn How to Program debugging
+						lesson?
+					</p>
+				)
+			});
+			this.setState({ buttonText: 'Yes I have reviewed the material.' });
+			this.setState({ clickCounter: this.state.clickCounter + 1 });
+		}
+		if (this.state.clickCounter === 1) {
+			this.setState({
+				currentlyVisibleState: <p>Have you asked another pair for help?</p>
+			});
+			this.setState({ buttonText: 'Yes I have asked another pair.' });
+			this.setState({ clickCounter: this.state.clickCounter + 1 });
+		}
 	};
 
 	render() {
-		let currentlyVisibleState = null;
-		let buttonText = null;
-
-		if (this.state.clickCounter < 1) {
-			currentlyVisibleState = (
-				<p>
-					Have you gone through all the steps on the Learn How to Program debugging
-					lesson?
-				</p>
-			);
-			buttonText = 'Yes I have.';
-			this.setState((this.state.clickCounter: 1));
-		}
-		if (this.state.clickCounter < 2) {
-			currentlyVisibleState = <p>Have you asked another pair for help?</p>;
-			buttonText = 'Yes I have.';
-			this.setState((this.state.clickCounter: 2));
-		}
-		if (this.state.clickCounter < 3) {
-			currentlyVisibleState = (
-				<p>
-					Have you spent 15 minutes going through through the problem documenting
-					every step?
-				</p>
-			);
-			buttonText = 'Yes I have.';
-			this.setState((this.state.clickCounter: 3));
-		}
-
-		if (this.state.formVisibleOnPage) {
-			currentlyVisibleState = <NewTicketForm />;
-			buttonText = 'Return to Ticket List';
-		} else {
-			currentlyVisibleState = <TicketList />;
-			buttonText = 'Add Ticket';
-		}
 		return (
 			<React.Fragment>
-				{currentlyVisibleState}
-				<button onClick={this.handleClick}>{buttonText}</button>
+				<p>{this.state.currentlyVisibleState}</p>
+				<button onClick={this.handleClick}>{this.state.buttonText}</button>
 			</React.Fragment>
 		);
 	}

@@ -1,9 +1,11 @@
 import React from 'react';
 
-export default (NewTicketForm = (props) => {
+const NewTicketForm = (props) => {
 	return (
 		<div>
 			<h3>This is a form.</h3>
 		</div>
 	);
-});
+};
+
+export default NewTicketForm;

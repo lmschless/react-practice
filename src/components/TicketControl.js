@@ -6,6 +6,7 @@ export default class TicketControl extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			masterTicketList: [],
 			formVisableOnPage: false,
 			clickCounter: 0,
 			buttonText: 'Create a new ticket',
@@ -20,6 +21,10 @@ export default class TicketControl extends Component {
 			)
 		};
 	}
+
+	onNewTicketCreation = (ticketForm) => {
+		this.setState({});
+	};
 
 	handleClick = () => {
 		if (this.state.clickCounter === 0) {

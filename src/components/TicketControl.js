@@ -26,7 +26,13 @@ export default class TicketControl extends Component {
 		const newMasterTicketList = this.state.masterTicketList.concat(newTicket);
 		this.setState({
 			masterTicketList: newMasterTicketList,
-			formVisibleOnPage: false,
+			formVisibleOnPage: false
+		});
+		// this.updateTicketList();
+	};
+
+	updateTicketList = () => {
+		this.setState({
 			currentlyVisibleState: <TicketList ticketList={this.state.masterTicketList} />
 		});
 	};
@@ -94,7 +100,16 @@ export default class TicketControl extends Component {
 				currentlyVisibleState: (
 					<NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />
 				),
-				buttonText: 'Add another ticket'
+				buttonText: 'Add another ticket',
+				clickCounter: this.state.clickCounter + 1
+			});
+		}
+		if (this.state.clickCounter === 4) {
+			this.setState({
+				currentlyVisibleState: (
+					<TicketList ticketList={this.state.masterTicketList} />
+				),
+				clickCounter: 3
 			});
 		}
 	};

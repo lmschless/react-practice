@@ -8,17 +8,18 @@ export default class TicketControl extends Component {
 		this.state = {
 			formVisableOnPage: false,
 			masterTicketList: [],
+			selectedTicket: null
 			// clickCounter: 0,
 			// buttonText: 'Create a new ticket',
-			currentlyVisibleState: (
-				<React.Fragment>
-					<h3>Epicodus Help Queue Ticket Submission</h3>
-					<p>
-						Click below to create a ticket and a teacher will be right over to
-						assist!
-					</p>
-				</React.Fragment>
-			)
+			// currentlyVisibleState: (
+			// 	<React.Fragment>
+			// 		<h3>Epicodus Help Queue Ticket Submission</h3>
+			// 		<p>
+			// 			Click below to create a ticket and a teacher will be right over to
+			// 			assist!
+			// 		</p>
+			// 	</React.Fragment>
+			// )
 		};
 	}
 
@@ -48,7 +49,7 @@ export default class TicketControl extends Component {
 			currentlyVisibleState = (
 				<TicketList ticketList={this.state.masterTicketList} />
 			);
-			buttonText = 'Add Ticket';
+			buttonText = 'Add New Ticket';
 		}
 		return (
 			<React.Fragment>

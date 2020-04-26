@@ -18,7 +18,8 @@ function NewTicketForm(props) {
 				<input type="text" name="names" placeholder="Pair Names" />
 				<input type="text" name="location" placeholder="Location" />
 				<textarea name="issue" placeholder="Describe your issue." />
-				<button type="submit">Help!</button>
+				<br />
+				<button type="submit">Save ticket</button>
 			</form>
 		</React.Fragment>
 		// <div>

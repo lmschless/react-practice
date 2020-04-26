@@ -7,14 +7,14 @@ function TicketList(props) {
 	return (
 		<React.Fragment>
 			<hr />
-			{props.ticketList.map((
-				ticket,
-				index // Loop through the list passed down from TicketControl.
-			) => (
+			{props.ticketList.map((ticket) => (
+				// Loop through the list passed down from TicketControl.
 				<Ticket
+					whenTicketClicked={props.onTicketSelection}
 					names={ticket.names}
 					location={ticket.location}
 					issue={ticket.issue}
+					id={ticket.id}
 					key={index}
 				/>
 			))}

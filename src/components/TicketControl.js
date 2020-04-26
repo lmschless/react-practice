@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
+import TicketDetail from './TicketDetail';
 
 export default class TicketControl extends Component {
 	constructor(props) {
@@ -31,6 +32,13 @@ export default class TicketControl extends Component {
 		});
 	};
 
+	handleChangingSelectedTicket = (id) => {
+		const selectedTicket = this.state.masterTicketList.filter(
+			(ticket) => ticket.id === id // filter ticketlist down to tickets where the id matches the passed in id
+		)[0]; // use index 0 because filter returns an array and we just want the first index.
+		this.setState({ selectedTicket: selectedTicket });
+	};
+
 	handleClick = () => {
 		this.setState((prevState) => ({
 			formVisibleOnPage: !prevState.formVisibleOnPage
@@ -40,14 +48,21 @@ export default class TicketControl extends Component {
 	render() {
 		let currentlyVisibleState = null;
 		let buttonText = null;
-		if (this.state.formVisibleOnPage) {
+
+		if (this.state.selectedTicket != null) {
+			currentlyVisibleState = <TicketDetail ticket={this.state.selectedTicket} />;
+			buttonText = 'Return to ticket list';
+		} else if (this.state.formVisibleOnPage) {
 			currentlyVisibleState = (
 				<NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />
 			);
 			buttonText = 'Return to ticket list';
 		} else {
 			currentlyVisibleState = (
-				<TicketList ticketList={this.state.masterTicketList} />
+				<TicketList
+					ticketList={this.state.masterTicketList}
+					onTicketSelection={this.handleChangingSelectedTicket} // sending this function to TicketList child component
+				/>
 			);
 			buttonText = 'Add New Ticket';
 		}
